@@ -1,0 +1,75 @@
+﻿<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="~/Content/MyStyle.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/MyScript.js"></script>
+</head>
+
+@model IEnumerable<andrei3.Models.ViewModelCheckIn>
+
+@{
+    ViewBag.Title = "Show";
+}
+
+<select id="selectBox" class="form-control input-sm" onchange="sortTable()">
+    <option value="email">Sort by email</option>
+    <option value="date">Sort by date</option>
+
+</select>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+<table id="table">
+
+    <tr class="TitleTable">
+        <th>
+            @Html.DisplayName("Has checked")
+        </th>
+        <th>
+            @Html.DisplayName("Date time")
+        </th>
+        <th>
+            @Html.DisplayName("User email")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.hasChecked)
+        {
+            <tr class="HasTrue">
+                <td>
+                    @Html.CheckBoxFor(modelItem => item.hasChecked, new { disabled = "disabled", @class = "option-input checkbox" })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.checkUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.userEmail)
+                </td>
+                <td></td>
+            </tr>
+        }
+        else
+        {
+            <tr class="HasFalse">
+                <td>
+                    @Html.CheckBoxFor(modelItem => item.hasChecked, new { disabled = "disabled", @class = "option-input checkbox" })
+                </td>
+                <td>
+                    <bold>   @Html.DisplayFor(modelItem => item.checkUser)</bold>
+                </td>
+                <td>
+                    <bold>    @Html.DisplayFor(modelItem => item.userEmail) </bold>
+                </td>
+
+                <td></td>
+            </tr>
+        }
+    }
+</table>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+
+</script>
+

@@ -1,0 +1,130 @@
+﻿.option-input:hover {
+    background: #9faab7;
+}
+
+.option-input:checked {
+    margin: -11px 0px 10px 0px;
+    background: #40e0d0;
+}
+
+.option-input:disabled {
+    margin: -11px 0px 10px 0px;
+    background: #40e0d0;
+}
+
+.option-input:checked::before {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    content: '✔';
+    display: inline-block;
+    font-size: 26.66667px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.option-input:checked::after {
+    -webkit-animation: click-wave 0.65s;
+    -moz-animation: click-wave 0.65s;
+    animation: click-wave 0.65s;
+    background: #40e0d0;
+    content: '';
+    display: block;
+    position: relative;
+    z-index: 100;
+}
+
+.option-input.radio {
+    border-radius: 50%;
+}
+
+    .option-input.radio[disabled] {
+        border-radius: 50%;
+        background: #9faab7;
+        border: 1px solid black;
+    }
+
+    .option-input.radio::after {
+        border-radius: 50%;
+    }
+
+.option-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    position: relative;
+    top: 13.33333px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    transition: all 0.15s ease-out 0s;
+    background: #fff;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+    z-index: 1000;
+    border: 1px solid black;
+    border-radius: 100px;
+}
+
+.radio[disabled] {
+    background-color: #FFFFFF;
+}
+
+input[type="radio"] {
+    /*margin: 5px;*/
+}
+
+
+.col-xs-1 {
+    padding: 2px;
+    text-align: center;
+    font-weight: 900;
+    vertical-align: central;
+}
+
+    .col-xs-1:first-child {
+        margin-top: 1px;
+    }
+
+.full-width {
+    min-width: 100%;
+}
+
+.HasTrue {
+    background: #22db53;
+}
+
+.HasFalse {
+    background: #e97373;
+}
+
+.TitleTable {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    font-size: 40px;
+    background: #22db53;
+}
+#table
+|{
+    width:100%;
+}
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}

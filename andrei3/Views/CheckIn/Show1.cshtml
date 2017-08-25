@@ -1,0 +1,42 @@
+﻿@model andrei3.Models.CheckIn
+
+@{
+    ViewBag.Title = "Show1";
+}
+
+<h2>Show1</h2>
+
+<div>
+    <h4>CheckIn</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hasChecked)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hasChecked)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.checkUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.checkUser)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
