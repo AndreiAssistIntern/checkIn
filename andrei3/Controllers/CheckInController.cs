@@ -17,9 +17,11 @@ namespace andrei3.Controllers
 
             return View();
         }
+    
         [AllowAnonymous]
         public ActionResult Show()
         {
+
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 List<ViewModelCheckIn> checkIn = new List<ViewModelCheckIn>();

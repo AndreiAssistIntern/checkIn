@@ -17,7 +17,7 @@ namespace WebJob1
            
                 test.Verify();
             Console.WriteLine("Am iesit");
-            //Console.ReadKey(); local
+            Console.ReadKey(); 
             //     var host = new JobHost();
             // The following code ensures that the WebJob will be running continuously
             //   host.RunAndBlock();

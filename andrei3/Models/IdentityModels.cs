@@ -13,8 +13,7 @@ namespace andrei3.Models
         public bool IsLogin { get; set; }
         public string key1 { get; set; } //token dinamic pentru ApiTest
         public string key2 { get; set; } //
-         public virtual ICollection<CheckIn> checkIn
-        { get; set; }
+        public virtual ICollection<CheckIn> checkIn { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -31,6 +30,8 @@ namespace andrei3.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            var ensureDLLIsCopied =
+              System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
 
         public static ApplicationDbContext Create()

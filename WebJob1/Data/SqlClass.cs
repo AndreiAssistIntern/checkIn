@@ -82,10 +82,10 @@ namespace WebJob1.Data
                             {
                                 Console.WriteLine("The date time picker is " + check);
 
-                                check = check.Replace("p.m.", "PM"); // run azure
-                                check = check.Replace("a.m.", "AM"); // run azure
-                                                                     //  check = check.Replace("PM", "p.m."); // run local
-                                                                     //  check = check.Replace("AM", "a.m."); // run local
+                                //  check = check.Replace("p.m.", "PM"); // run azure
+                                //    check = check.Replace("a.m.", "AM"); // run azure
+                                  check = check.Replace("PM", "p.m."); // run local
+                                  check = check.Replace("AM", "a.m."); // run local
                                 Console.WriteLine(DateTime.Now.ToString("h:mm:ss tt") + " and " + check);
                                 DateTime s = DateTime.ParseExact(check, "h:mm:ss tt", null);
                                 TimeSpan diference = DateTime.Now - DateTime.ParseExact(check, "h:mm:ss tt", null);
@@ -93,7 +93,7 @@ namespace WebJob1.Data
                                 //DIFERENCEMINUTES
                                 var diffMin = ConfigurationManager.AppSettings["DIFERENCEMINUTES"]; // azure
                                                                                                     //   var diffMin = "1"; // local
-                                if (diference.Minutes >= Int32.Parse(diffMin))
+                                if (diference.Minutes >= Int32.Parse("1"))
                                 {
                                     Console.WriteLine("Attemp to write");
                                     reader.Close();
