@@ -12,13 +12,15 @@ namespace WebJob1
     {
         static void Main(string[] args)
         {
+            var config = new JobHostConfiguration();
             Console.WriteLine("Am intrat");
             SqlClass test = new SqlClass();
            
                 test.Verify();
             Console.WriteLine("Am iesit");
             Console.ReadKey(); 
-            //     var host = new JobHost();
+            var host = new JobHost();
+            
             // The following code ensures that the WebJob will be running continuously
             //   host.RunAndBlock();
         }

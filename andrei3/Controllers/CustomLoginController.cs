@@ -7,21 +7,68 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Controllers;
 using System.Web.Mvc;
 
 namespace andrei3.Controllers
 {
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+    public class MyActionFilter : System.Web.Http.Filters.ActionFilterAttribute
+    {
+
+        public override void OnActionExecuting(HttpActionContext filterContext)
+        {
+            Secure secure = new Secure();
+            string header = "";
+            IEnumerable<string> values;
+            if (filterContext.Request.Headers.TryGetValues("WaCaKey", out values))
+            {
+                header = values.FirstOrDefault();
+                bool check = secure.checkUser(header);
+                if (check == false)
+                {
+                    var response = new HttpResponseMessage(HttpStatusCode.Forbidden);
+                    string message =
+                        "<!DOCTYPE html><html><head><title> Forbiden page </title></head><body><h2 style='text-align:center'> Sorry, Page is secure </h2></body></html>";
+                    response.Content = new StringContent(message);
+                    response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+                    filterContext.Response = response;
+                }
+                System.Diagnostics.Debug.WriteLine(header);
+            }
+
+            //        base.OnActionExecuting(filterContext); // call the base function from derived class
+        }
+
+
+
+
+    }
+    [MyActionFilter]
     public class CustomLoginController : ApiController
     {
         private Secure secure;
-        private readonly ApplicationDbContext _context = new ApplicationDbContext();    
+        private readonly ApplicationDbContext _context = new ApplicationDbContext();
         public ApplicationUserManager UserManager;
+        //tests
 
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/Login/andrei1")]
+        public string testStaticKey1()
+        {
+            System.Diagnostics.Debug.WriteLine("TEST");
+            return "Andrei";
+        }
+
+
+
+        // tests ends
 
         public CustomLoginController()
         {
@@ -88,7 +135,7 @@ namespace andrei3.Controllers
             bool check = this.secure.checkUser(secure);
             return check;
         }
-    
+
         [System.Web.Http.HttpPost]
         [System.Web.Http.Route("api/Login/LoginDinamic")]
         public async Task<String> PostUser2([FromBody] LoginViewModel user)
@@ -102,11 +149,11 @@ namespace andrei3.Controllers
         [System.Web.Http.Route("api/Login/TestStaticKey")]
         public async Task<string> testDinamicKey()
         {
-            bool check =await checkUserDinamic();
+            bool check = await checkUserDinamic();
             return check ? "The user is logged in" : "The user is not logged in";
         }
 
-       
+
         public async Task<bool> checkUserDinamic()
         {
             string authorization1 = "";
